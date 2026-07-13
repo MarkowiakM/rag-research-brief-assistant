@@ -29,4 +29,5 @@ npm run lint           # run eslint
 npm run format         # run prettier
 npm run format:check   # check formatting without writing
 npm run typecheck      # run tsc
+npm run test           # run vitest
 ```

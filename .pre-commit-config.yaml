@@ -1,0 +1,20 @@
+repos:
+  - repo: local
+    hooks:
+      - id: backend-format
+        name: backend format
+        entry: bash -c 'cd backend && uv run ruff format .'
+        language: system
+        pass_filenames: false
+
+      - id: backend-lint
+        name: backend lint
+        entry: bash -c 'cd backend && uv run ruff check .'
+        language: system
+        pass_filenames: false
+
+      - id: backend-typecheck
+        name: backend typecheck
+        entry: bash -c 'cd backend && uv run mypy'
+        language: system
+        pass_filenames: false

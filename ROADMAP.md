@@ -3,9 +3,9 @@
 ## Phase 1 — Project Skeleton
 
 - [x] Set up repository structure
-- [ ] Add FastAPI backend
-- [ ] Add Vite React frontend
-- [ ] Connect frontend to backend health endpoint
+- [x] Add FastAPI backend
+- [x] Add Vite React frontend
+- [x] Connect frontend to backend health endpoint
 - [x] Add base README and roadmap
 
 ## Phase 2 — Mock Brief UI

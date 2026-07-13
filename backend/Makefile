@@ -1,7 +1,7 @@
 .PHONY: dev test lint format typecheck check
 
 dev:
-	uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+	uv run fastapi dev --host 0.0.0.0 --port 8000
 
 test:
 	uv run pytest

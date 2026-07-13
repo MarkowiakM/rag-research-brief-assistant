@@ -31,6 +31,19 @@ Briefly helps users explore a research question by organizing relevant academic 
 - OpenAI API
 - OpenAlex API
 
+## Running with Docker
+
+```bash
+cp .env.example .env
+docker compose up --build
+```
+
+- Frontend: http://localhost:5173
+- Backend: http://localhost:8000
+- Postgres (pgvector): localhost:5432
+
+Source is mounted into the containers, so both the frontend and backend hot-reload on changes.
+
 ## Project Status
 
 This repository currently contains the initial project skeleton. The first PR focuses on setup, structure, and local frontend-backend connectivity.

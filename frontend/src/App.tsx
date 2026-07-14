@@ -1,28 +1,38 @@
-import { useQuery } from '@tanstack/react-query'
-import { Button } from '@/components/ui/button'
-import { api } from '@/lib/api'
+import { useState } from 'react'
+import { BriefView } from '@/components/BriefView'
+import { NavBar } from '@/components/NavBar'
+import { SearchScreen } from '@/components/SearchScreen'
+import { mockBrief } from '@/mocks/brief'
 
-type HealthResponse = {
-  status: string
-  service: string
-}
+type Status = 'idle' | 'generating' | 'ready'
+
+const GENERATING_DELAY_MS = 600
 
 function App() {
-  const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ['health'],
-    queryFn: async () => (await api.get<HealthResponse>('/health')).data,
-  })
+  const [status, setStatus] = useState<Status>('idle')
+  const [query, setQuery] = useState('')
+
+  function handleSubmit(submittedQuery: string) {
+    setQuery(submittedQuery)
+    setStatus('generating')
+    setTimeout(() => setStatus('ready'), GENERATING_DELAY_MS)
+  }
 
   return (
-    <main className="flex min-h-svh flex-col items-center justify-center gap-4">
-      <h1 className="text-2xl font-medium">Briefly</h1>
-      <p className="text-muted-foreground text-sm">
-        {isLoading && 'Checking API…'}
-        {isError && 'API unreachable'}
-        {data && `${data.service}: ${data.status}`}
-      </p>
-      <Button onClick={() => refetch()}>Recheck</Button>
-    </main>
+    <div className="flex min-h-svh flex-col">
+      <NavBar />
+      {status === 'idle' && <SearchScreen onSubmit={handleSubmit} />}
+      {status === 'generating' && (
+        <div
+          role="status"
+          aria-label="Generating your brief…"
+          className="mx-auto flex w-full max-w-160 flex-1 items-center px-4 py-8"
+        >
+          <div className="h-40 w-full animate-pulse rounded-xl bg-card ring-1 ring-foreground/10" />
+        </div>
+      )}
+      {status === 'ready' && <BriefView brief={{ ...mockBrief, query }} />}
+    </div>
   )
 }
 

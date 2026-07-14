@@ -24,4 +24,29 @@ describe('App', () => {
       }),
     ).toBeInTheDocument()
   })
+
+  it('returns to the search screen when the wordmark is clicked', async () => {
+    render(<App />)
+
+    fireEvent.change(screen.getByLabelText('Research question'), {
+      target: { value: 'How is RAG evaluation usually done?' },
+    })
+    fireEvent.click(screen.getByRole('button', { name: 'Ask' }))
+    await screen.findByRole('heading', {
+      name: 'How is RAG evaluation usually done?',
+    })
+
+    fireEvent.click(screen.getByRole('button', { name: 'Briefly' }))
+
+    expect(screen.getByLabelText('Research question')).toBeInTheDocument()
+  })
+
+  it('toggles the dark class on the document element', () => {
+    render(<App />)
+    expect(document.documentElement).not.toHaveClass('dark')
+
+    fireEvent.click(screen.getByRole('button', { name: 'Switch to dark theme' }))
+
+    expect(document.documentElement).toHaveClass('dark')
+  })
 })

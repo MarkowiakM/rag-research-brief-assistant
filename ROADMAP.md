@@ -10,11 +10,11 @@
 
 ## Phase 2 — Mock Brief UI
 
-- [ ] Add nav bar and empty-state search screen (question input, suggested prompts)
-- [ ] Add mocked research brief generation flow (idle → generating → ready)
-- [ ] Render TL;DR card and key concepts
-- [ ] Render claim → evidence → source table
-- [ ] Render sources sidebar
+- [x] Add nav bar and empty-state search screen (question input, suggested prompts)
+- [x] Add mocked research brief generation flow (idle → generating → ready)
+- [x] Render TL;DR card and key concepts
+- [x] Render claim → evidence → source table
+- [x] Render sources sidebar
 
 ## Phase 3 — OpenAlex Import
 
